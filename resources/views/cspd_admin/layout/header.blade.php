@@ -19,9 +19,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- custom css -->
-    <link href="{{asset('css/adminstyle.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/adminstyle.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +36,8 @@
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="rounded-circle" src="{{asset('images/maju.png')}}" alt="" style="width: 40px; height: 40px;">
+                        <img class="rounded-circle" src="{{ asset('images/maju.png') }}" alt=""
+                            style="width: 40px; height: 40px;">
                         <div
                             class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                         </div>
@@ -50,23 +51,25 @@
                 <div class="navbar-nav w-100">
                     <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    
-                            <div class="nav-item dropdown">
+
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>UPCOMING</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="#" class="dropdown-item">Add Upcoming Programs</a>
-                            <a href="#" class="dropdown-item">View Upcoming Programs</a>
+                            <a href="{{ route('admin.upcoming.create') }}" class="dropdown-item">Add Upcoming
+                                Programs</a>
+                            <a href="{{ route('admin.upcoming.index') }}" class="dropdown-item">View Upcoming
+                                Programs</a>
                         </div>
                     </div>
 
-                            <div class="nav-item dropdown">
+                    <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="fa fa-laptop me-2"></i>NAVTTC</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{{ route('admin.navttc.create') }}" class="dropdown-item">Add Navttc Programs</a>
                             <a href="{{ route('admin.navttc.index') }}" class="dropdown-item">View Navttc Programs</a>
-                            
+
                         </div>
                     </div>
                     <!-- <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a> -->
@@ -109,7 +112,7 @@
 
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="{{asset('images/maju.png')}}" alt=""
+                            <img class="rounded-circle me-lg-2" src="{{ asset('images/maju.png') }}" alt=""
                                 style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex">Maju</span>
                         </a>

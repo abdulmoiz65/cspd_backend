@@ -12,7 +12,7 @@ class UpcomingProgramController extends Controller
      */
     public function index()
     {
-        $programs = UpcomingProgram::latest()->paginate(10);
+        $programs = UpcomingProgram::latest()->paginate(15);
         return view('cspd_admin.pages.upcoming.index', compact('programs'));
     }
 
