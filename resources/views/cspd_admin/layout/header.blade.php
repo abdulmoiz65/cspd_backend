@@ -72,6 +72,18 @@
 
                         </div>
                     </div>
+                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-laptop me-2"></i>CALENDER</a>
+                              <div class="dropdown-menu bg-transparent border-0">
+                                  <a href="{{ route('admin.calendars.create') }}" class="dropdown-item">Add Calendar</a>
+                            <a href="{{ route('admin.calendars.index') }}" class="dropdown-item">View Calendar</a>
+                            
+
+                        </div>
+
+                        
+                    </div>
                     <!-- <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a> -->
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
