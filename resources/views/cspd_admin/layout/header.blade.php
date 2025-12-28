@@ -98,9 +98,12 @@
 
                 <!-- Log Out Button -->
                 <div class="navbar-nav w-100 mt-auto">
-                    <a href="./signin.html" class="nav-item nav-link">
-                        <i class="fa fa-sign-out-alt me-2"></i>Log Out
-                    </a>
+                    <form method="POST" action="{{ route('admin.logout') }}" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="nav-item nav-link" style="background: none; border: none; cursor: pointer;">
+                            <i class="fa fa-sign-out-alt me-2"></i>Log Out
+                        </button>
+                    </form>
                 </div>
 
             </nav>
@@ -129,7 +132,10 @@
                             <span class="d-none d-lg-inline-flex">Maju</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="./signin.html" class="dropdown-item">Log Out</a>
+                            <form method="POST" action="{{ route('admin.logout') }}" style="display: inline; width: 100%;">
+                                @csrf
+                                <button type="submit" class="dropdown-item" style="background: none; border: none; cursor: pointer; width: 100%; text-align: left;">Log Out</button>
+                            </form>
                         </div>
                     </div>
                 </div>
