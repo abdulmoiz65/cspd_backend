@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\UpcomingProgram;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UpcomingProgramController extends Controller
@@ -46,8 +47,17 @@ class UpcomingProgramController extends Controller
             'timing' => 'required|string|max:100',
             'fees' => 'required|numeric|min:0',
             'discount_info' => 'nullable|string',
+            'brochure' => 'nullable|file|mimes:pdf|max:5120',
             'status' => 'required|in:active,inactive',
         ]);
+
+        // Handle the brochure file
+        if ($request->hasFile('brochure')) {
+            $file = $request->file('brochure');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads/brochures', $filename, 'public');
+            $validated['brochure'] = $path;
+        }
 
         UpcomingProgram::create($validated);
 
@@ -98,8 +108,22 @@ class UpcomingProgramController extends Controller
             'timing' => 'required|string|max:100',
             'fees' => 'required|numeric|min:0',
             'discount_info' => 'nullable|string',
+            'brochure' => 'nullable|file|mimes:pdf|max:5120',
             'status' => 'required|in:active,inactive',
         ]);
+
+        // Handle the brochure file
+        if ($request->hasFile('brochure')) {
+            // Delete old brochure if it exists
+            if ($program->brochure && Storage::disk('public')->exists($program->brochure)) {
+                Storage::disk('public')->delete($program->brochure);
+            }
+            
+            $file = $request->file('brochure');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads/brochures', $filename, 'public');
+            $validated['brochure'] = $path;
+        }
 
         $program->update($validated);
 
@@ -114,6 +138,12 @@ class UpcomingProgramController extends Controller
     public function destroy($id)
     {
         $program = UpcomingProgram::findOrFail($id);
+        
+        // Delete the brochure file if it exists
+        if ($program->brochure && Storage::disk('public')->exists($program->brochure)) {
+            Storage::disk('public')->delete($program->brochure);
+        }
+        
         $program->delete();
 
         return redirect()

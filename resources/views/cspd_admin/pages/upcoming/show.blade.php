@@ -94,6 +94,21 @@
                     </div>
                 @endif
 
+                <!-- Brochure Section -->
+                @if ($program->brochure)
+                    <div class="alert alert-info mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0"><i class="fas fa-file-pdf me-2"></i>Program Brochure</h5>
+                                <small class="text-muted">PDF brochure available for download</small>
+                            </div>
+                            <a href="{{ asset('storage/' . $program->brochure) }}" target="_blank" class="btn btn-info btn-sm">
+                                <i class="fas fa-download me-1"></i>View/Download Brochure
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Tabs for Details -->
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">

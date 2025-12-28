@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
         'fees',
         'currency',
         'discount_info',
+        'brochure',
         'status'
     ];
     

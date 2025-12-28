@@ -19,7 +19,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('admin.upcoming.store') }}">
+        <form method="POST" action="{{ route('admin.upcoming.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -265,6 +265,20 @@
                                   class="form-control @error('publications') is-invalid @enderror"
                                   placeholder="List any publications...">{{ old('publications') }}</textarea>
                         @error('publications')
+                            <span class="error-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Brochure Upload (Optional) -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-file-pdf me-1"></i> Program Brochure (PDF)
+                        </label>
+                        <input type="file" name="brochure" 
+                               accept=".pdf"
+                               class="form-control @error('brochure') is-invalid @enderror">
+                        <small class="text-muted">Upload a PDF brochure (Optional, Max 5MB)</small>
+                        @error('brochure')
                             <span class="error-feedback">{{ $message }}</span>
                         @enderror
                     </div>

@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('admin.upcoming.update', $program->id) }}">
+            <form method="POST" action="{{ route('admin.upcoming.update', $program->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -242,6 +242,27 @@
                             </label>
                             <textarea name="publications" rows="3" class="form-control @error('publications') is-invalid @enderror">{{ old('publications', $program->publications) }}</textarea>
                             @error('publications')
+                                <span class="error-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- Brochure Upload -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-file-pdf me-1"></i> Program Brochure (PDF)
+                            </label>
+                            @if ($program->brochure)
+                                <div class="mb-2">
+                                    <a href="{{ asset('storage/' . $program->brochure) }}" target="_blank" class="btn btn-sm btn-info">
+                                        <i class="fas fa-download me-1"></i>Current Brochure
+                                    </a>
+                                </div>
+                            @endif
+                            <input type="file" name="brochure" 
+                                   accept=".pdf"
+                                   class="form-control @error('brochure') is-invalid @enderror">
+                            <small class="text-muted">Upload a new PDF brochure to replace (Optional, Max 5MB)</small>
+                            @error('brochure')
                                 <span class="error-feedback">{{ $message }}</span>
                             @enderror
                         </div>
