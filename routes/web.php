@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NavttcProgramController;
 use App\Http\Controllers\Admin\UpcomingProgramController;
 use App\Http\Controllers\Admin\CalendarController;
@@ -18,9 +19,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::post('logout', [AdminLoginController::class, 'logout'])->name('logout');
 
-        Route::get('/', function () {
-            return view('cspd_admin.pages.index'); // Dashboard
-        })->name('dashboard');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         // NAVTTC Programs
         Route::get('/navttc-programs', [NavttcProgramController::class, 'index'])->name('navttc.index');
